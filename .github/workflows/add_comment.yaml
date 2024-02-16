@@ -1,0 +1,27 @@
+name: 'Add scheuled label'
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    branches:
+      - main
+
+  schedule:
+    - cron: */10 * * * *
+
+test:
+  runs-on: ubuntu-latest
+  if: contains(github.event.issue.labels.*.name, 'test label')
+  permissions:
+    pull-requests: write
+  steps:
+    - uses: mshick/add-pr-comment@v2
+      with:
+        message: |
+          /test all the @things
+        message-failure: |
+          Something went wrong
+
