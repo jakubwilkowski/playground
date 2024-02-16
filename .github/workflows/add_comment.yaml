@@ -25,4 +25,6 @@ jobs:
             /test all the @things
           message-failure: |
             Something went wrong
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
